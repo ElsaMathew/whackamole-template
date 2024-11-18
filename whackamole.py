@@ -10,19 +10,23 @@ def main():
         screen = pygame.display.set_mode((640, 512))
         clock = pygame.time.Clock()
         running = True
+        #Initializes variables
         x = 0
         y = 0
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+                #Checks if mouse has been clicked
                 elif event.type == pygame.MOUSEBUTTONDOWN:
+                    #Checks if the box the mole is in has been clicked
                     if x // 32 * 32 == event.pos[0] // 32 * 32 and y // 32 * 32 == event.pos[1] // 32 * 32:
+                        #Sets the coordinates of the mole to a new random box
                         x = random.randrange(0, 609) // 32 * 32
                         y = random.randrange(0, 481) // 32* 32
                         screen.blit(mole_image, mole_image.get_rect(topleft = (x, y)))
-
             screen.fill((242, 255, 244))
+            #Draws grid lines
             for i in range(1, 20):
                 pygame.draw.line(screen, (15, 79, 21), (i * 32, 0), (i * 32, 512))
             for j in range(1, 16):
